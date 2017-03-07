@@ -1,4 +1,10 @@
 class Word < ActiveRecord::Base
+  before_save :create_anagram_key
+
+
+  def create_anagram_key
+    self.anagram_key = Anagram.get_key(self.source_word)
+  end
 
   class << self
 

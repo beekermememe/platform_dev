@@ -34,20 +34,6 @@ RSpec.describe Anagram, type: :model do
   end
 
   describe "self.check_match" do
-    it "should return a match if all the letter occurances are the same" do
-      source = {"a" => 3,"b" => 4, "d" => 6}
-      target = "aaabbbbdddddd"
-      expect(Anagram.check_match(source,target)).to eq true
-    end
-
-    it "should return a match if all the letter occurances are not the same" do
-      source = {"a" => 3,"b" => 4, "d" => 6}
-      target = "aaabbbbddddd"
-      expect(Anagram.check_match(source,target)).to eq false
-    end
-  end
-
-  describe "self.check_match" do
     it "should find matching algorithms for the word passed" do
       matches = Anagram.find("rabe")
       expect(matches.length).to eq(2)
@@ -73,6 +59,25 @@ RSpec.describe Anagram, type: :model do
       matches = Anagram.find("rabe",1)
       expect(matches.length).to eq(1)
     end
+  end
+
+  describe "self.get_key" do
+    it "should return the anagram key based on word counts" do
+      key1 = Anagram.get_key("bare")
+      expect(key1).to eq("a1b1e1r1")
+    end
+
+    it "should return the anagram key based on word counts independant of case" do
+      key1 = Anagram.get_key("BaRe")
+      expect(key1).to eq("a1b1e1r1")
+    end
+
+    it "should return the same key for word counts in different orders in the word count hash" do
+      key1 = Anagram.get_key("bare")
+      key2 = Anagram.get_key("aerb")
+      expect(key1).to eq(key2)
+    end
+
   end
 
 end

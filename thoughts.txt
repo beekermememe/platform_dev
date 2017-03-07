@@ -1,0 +1,21 @@
+With all the test passing, the code is not optimized for large scale operations.
+Looking at the Anagrams model, we can do a good bit of the work when storing a word.
+That way we do not have to get the letter counts of each word everytime.
+
+So step one - store the letter counts in the Word object.
+
+Next - we need to be able to send a query to the db to find words that match the letter counts of the existing word
+
+What if we created a special "KEY" that was the same for words with matching letter counts then indexed on this key
+We would then only need to get the "KEY" of the new word and find words with that matching key!
+
+Proposal
+The key is simply
+["a1b4o3z2"]
+
+where we have the letter then the count for each one, concatenated in a string
+
+Requirement: THE LETTER ORDER MUST BE THE SAME EACH TIME
+
+See the branch - analayze-anagram
+
