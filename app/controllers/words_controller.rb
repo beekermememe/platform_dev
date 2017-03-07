@@ -11,13 +11,13 @@ class WordsController < ApplicationController
       Word.delete_word(word_to_delete)
     end
 
-    render json: nil, status: 204
+    render json: nil, status: 200
   end
 
   def create
     words_to_add = params[:words]
     Word.add_new_words(words_to_add)
-    render json: {}
+    render json: nil, status: 201
   end
 
 

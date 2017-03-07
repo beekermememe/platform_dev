@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe WordsController, type: :controller do
 
   describe "POST /words.json" do
-    it "returns http success" do
+    it "returns http status code 201" do
       post :create, format: :json, words: ["banana","shoes"]
-      expect(response).to have_http_status(:success)
+      expect(response.status).to eq(201)
     end
 
     it "call the method to add the words passed to the existing list of words" do
@@ -29,9 +29,9 @@ RSpec.describe WordsController, type: :controller do
   end
 
   describe "DELETE /words/word_to_delete.json" do
-    it "returns a status 204 on success" do
+    it "returns a status 200 on success" do
       delete :delete_word, format: :json, word: "idea"
-      expect(response.status).to eq(204)
+      expect(response.status).to eq(200)
     end
 
     it "should call the method to delete a single word" do
