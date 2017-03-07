@@ -10,7 +10,6 @@ class WordsController < ApplicationController
     if(word_to_delete)
       Word.delete_word(word_to_delete)
     end
-
     render json: nil, status: 200
   end
 

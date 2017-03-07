@@ -60,10 +60,4 @@ RSpec.describe Word, type: :model do
     end
   end
 
-  describe "self.get_anagrams" do
-    it "should return anagrams for the word dog" do
-      expect(1).to eq(0)
-    end
-  end
-
 end
