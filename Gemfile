@@ -37,6 +37,7 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'byebug'
+  gem 'test-unit'
 end
 
 group :development do
