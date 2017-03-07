@@ -4,13 +4,13 @@ RSpec.describe WordsController, type: :controller do
 
   describe "POST /words.json" do
     it "returns http success" do
-      post "/", format: :json, data: {words: ["banana","shoes"]}
+      post :create, format: :json, words: ["banana","shoes"]
       expect(response).to have_http_status(:success)
     end
 
     it "call the method to add the words passed to the existing list of words" do
-      post "/", format: :json, data: {words: ["banana","shoes"]}
-      expect(response).to have_http_status(:success)
+      expect(Word).to receive(:add_new_words).with(["banana","shoes"]).and_return(nil)
+      post :create, format: :json, words: ["banana","shoes"]
     end
 
   end

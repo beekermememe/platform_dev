@@ -19,3 +19,12 @@ RSpec.describe "words routes", :type => :routing do
         :action =>  "create")
   end
 end
+
+RSpec.describe "anagrams routes", :type => :routing do
+  it "routes get /anagrams/word to anagrams#get" do
+    expect(:get => "/anagrams/word_to_search", format: :json).to route_to(
+        :controller => "anagrams",
+        :action =>  "get",
+        :word => "word_to_search")
+  end
+end
