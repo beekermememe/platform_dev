@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  get 'words/read'
 
-  get 'anagrams/read'
-
+  delete 'words/:word' => 'words#delete_word'
+  delete "words" => "words#delete_all_words"
+  resources :words
+  resources :anagrams
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

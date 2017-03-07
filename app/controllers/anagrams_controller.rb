@@ -1,4 +1,6 @@
 class AnagramsController < ApplicationController
-  def read
+  def word
+
+    render json: []
   end
 end
