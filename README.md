@@ -25,7 +25,29 @@ To run all the tests - "bundle exec rake spec". See the rspec docs on how to run
 To get the api documentation you will need to start the server and navigate to the apidocs url - http://localhost:3000/apipie. We are using https://github.com/Apipie/apipie-rails to support this documentation.
 
 ## Project Notes
+1. There were a 3 endpoint that were optional that are not present, but I will discuss them here
+- Endpoint that takes a set of words and returns whether or not they are all anagrams of each other. This is not too clear on how the endpoint would return the results. In any case I would suggest we use the method Anagram.get_key on each word and find matches of the keys.
+- Endpoint to return all anagram groups of size >= *x*. I would suggest looking into using the same style of login in Anagram.find_all_words_with_the_maximum_number_of_anagrams, but rather than looking for all the anagram_keys in the max group, use the limit of the group size.
+- Endpoint to delete a word *and all of its anagrams*. I would suggest we use the method Anagram.get_key to find the matching anagrams to the word passed.
 
+2. Discussion
+
+- The first point to address here would be to look into either session authentication or at least an apikey on the Delete and Post methods. It is definitely a little scary to have them hanging out there.
+- DB selection. For simplicity, I used sqlite3. This makes the app easily portable. From a scalability standpoint however, this is not the answer. On selection of a DB/Datastore there are a number of items to determine, some of which are:
+    - What are the endpoints that will get the most traffic - what queries do they hit?
+    - When making queries, how "real-time" do we need the data to be? (especially regarding the stats)
+    - If we are implementing authentication, will this affect result sets
+    - Are there other systems that need access to our data
+    - What kind of response times are we looking for
+    - Backup/Restore requirements
+    - How big do we see the data getting?
+    - At the moment, a key value store may just fine for the anagram search but what else is coming down the pipeline?
+- Caching. We have no caching at the moment. We need to look at what are the main queries/endpoints that get traffic. We would need to see if it is even worth caching if the queries are always unique. It maybe worth looking into a different method of data storage - redis key/value store?
+- Refreshing the WordStat table. We need to decide if we need this run on a periodic basis or on an after-save when a new word is added/deleted?
+- Another thing that would be worth investing time in would be adding a standard error handling response from the API's. Should be return 404 if an anagram does not exist or if the word we wish to delete does not exist. When we add words, should be return feedback if a word already exists?
+- When approaching this project, I tried to not try to think too ahead. Especially when it came to the anagram search section. After looking at the project at first, I left this part to the end of the initial implementation. And rather than trying to integrate a solution into the databaase, I went with a code first approach. It was only then, once I had the mechanism as to where I saw the actual algorithm understood, I then moved to the DB to see if I could leverage it for performance. Depending on the DB available, it may have mechanisms (e.g stored proceedures) that we could leverage in the future.
+- I did not spend a huge amount of time on the data ingestion side. Based on the DB architecture, I left this for later since fast data ingestion is very much datastore specific.
+- Where I felt applicable, I added default parameters. However, it would be good to place documented limits on (1) The amount of words you want to add (2) The number of anagram matches you want to get
 
 Initial Specifications
 ======================
