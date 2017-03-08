@@ -26,9 +26,9 @@ To get the api documentation you will need to start the server and navigate to t
 
 ## Project Notes
 1. There were a 3 endpoint that were optional that are not present, but I will discuss them here
-- Endpoint that takes a set of words and returns whether or not they are all anagrams of each other. This is not too clear on how the endpoint would return the results. In any case I would suggest we use the method Anagram.get_key on each word and find matches of the keys.
-- Endpoint to return all anagram groups of size >= *x*. I would suggest looking into using the same style of login in Anagram.find_all_words_with_the_maximum_number_of_anagrams, but rather than looking for all the anagram_keys in the max group, use the limit of the group size.
-- Endpoint to delete a word *and all of its anagrams*. I would suggest we use the method Anagram.get_key to find the matching anagrams to the word passed.
+- Endpoint that takes a set of words and returns whether or not they are all anagrams of each other. This is not too clear on how the endpoint would return the results. In any case I would suggest we use the method ```Anagram.get_key``` on each word and find matches of the keys.
+- Endpoint to return all anagram groups of size >= *x*. I would suggest looking into using the same style of login in ```Anagram.get_largest_groupings```, but rather than looking for all the anagram_keys in the max group, use the limit of the group size.
+- Endpoint to delete a word *and all of its anagrams*. I would suggest we use the method ```Anagram.get_key``` to find the matching anagrams to the word passed.
 
 2. Discussion
 

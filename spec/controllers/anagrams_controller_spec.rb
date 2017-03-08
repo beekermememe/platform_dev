@@ -42,7 +42,7 @@ RSpec.describe AnagramsController, type: :controller do
 
   describe "#Get get_max_occurring_anagrams - return anagrams" do
     it "should call the method to get the max anagrams" do
-      expect(Anagram).to receive(:find_all_words_with_the_maximum_number_of_anagrams).and_return(["god","dog"])
+      expect(Anagram).to receive(:get_largest_groupings).and_return(["god","dog"])
       get :get_max_occurring_anagrams
     end
   end

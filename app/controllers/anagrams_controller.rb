@@ -21,6 +21,6 @@ class AnagramsController < ApplicationController
   api :GET, '/anagrams/get_max_occurring_anagrams', "Endpoint that identifies words with the most anagrams"
   example '{"anagrams":["angor","argon","goran","grano","groan","nagor","Orang","orang","organ","rogan","Ronga"]}'
   def get_max_occurring_anagrams
-    render json: {anagrams: Anagram.find_all_words_with_the_maximum_number_of_anagrams}
+    render json: {anagrams: Anagram.get_largest_groupings}
   end
 end

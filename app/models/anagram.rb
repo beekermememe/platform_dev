@@ -36,7 +36,7 @@ class Anagram
       return key
     end
 
-    def find_all_words_with_the_maximum_number_of_anagrams
+    def get_largest_groupings
       max = 0
       anagram_keys = []
       # This AR query groups by anagram key and then count : returns a hash of key to the size of the group - Handy :)
