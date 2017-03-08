@@ -13,6 +13,7 @@ In the terminal
 - cd to the project directory
 - Install the gems - "bundle install"
 - Set up database - "bundle exec rake db:create:all; rake db:migrate"
+- Load all the data into the system - "bundle exec rake startup:reload_all_data"
 
 At this point you are ready to validate the app using the provided test files. To do this run the comment "ruby anagram_test.rb". All the tests should pass
 
