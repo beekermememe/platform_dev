@@ -40,4 +40,25 @@ RSpec.describe WordsController, type: :controller do
     end
   end
 
+  describe "GET /words/stats.json" do
+    it "returns a json list of the stats" do
+      expect(Word).to receive("count").and_return(1)
+      expect(WordStat).to receive("get_average").and_return(2)
+      expect(WordStat).to receive("get_minimum").and_return(3)
+      expect(WordStat).to receive("get_maximum").and_return(4)
+      expect(WordStat).to receive("get_median").and_return(5)
+      get :stats, format: :json
+      expected_response = {
+          stats: {
+            word_count: 1,
+            max_word_length: 4,
+            min_word_length: 3,
+            average_word_length: 2,
+            median_word_length: 5
+          }
+      }.to_json
+      expect(response.body).to eq(expected_response)
+    end
+  end
+
 end

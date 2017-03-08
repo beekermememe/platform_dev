@@ -18,6 +18,12 @@ RSpec.describe "words routes", :type => :routing do
         :controller => "words",
         :action =>  "create")
   end
+
+  it "routes GET /words/stats  to words#stats" do
+    expect(:get => "/words/stats", format: :json).to route_to(
+        :controller => "words",
+        :action =>  "stats")
+  end
 end
 
 RSpec.describe "anagrams routes", :type => :routing do

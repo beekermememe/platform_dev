@@ -19,3 +19,17 @@ Requirement: THE LETTER ORDER MUST BE THE SAME EACH TIME
 
 See the branch - analayze-anagram
 
++++Stats
+Okay now onto stats
+Looking at this we have alot of records and recalculating over the entire data set is time intensive but not unmanageable,
+however we could at fields that can help us alot. If we have a field on the Word object that indicates the word.length,
+we could use this to help in our statistics gathering.
+If we stored a summary/rollup of the data based on word lengths we should have all the data to easily to calculations.
+We could then run these calculations quite quickly in realtime without tying up the Word table.
+Only thing is the freshness of the data -> what if someone adds/deletes a word during the calculation
+
+
+++++++Proper nouns
+To aid in this if we add a flag on each word to indicate it is a proper noun, and add an index on this, we could add this
+query to support. A propernoun being where the first letter is in Caps
+

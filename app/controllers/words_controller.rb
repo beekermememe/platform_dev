@@ -19,5 +19,21 @@ class WordsController < ApplicationController
     render json: nil, status: 201
   end
 
+  def stats
+    word_count = Word.count
+    max_size = WordStat.get_maximum
+    min_size = WordStat.get_minimum
+    average_size = WordStat.get_average
+    median = WordStat.get_median
+    render json: {
+      stats: {
+          word_count: word_count,
+          max_word_length: max_size,
+          min_word_length: min_size,
+          average_word_length: average_size,
+          median_word_length: median
+      }
+    }
+  end
 
 end

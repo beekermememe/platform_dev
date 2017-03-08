@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'words/stats' => 'words#stats'
   delete 'words/:word' => 'words#delete_word'
   delete "words" => "words#delete_all_words"
   resources :words
