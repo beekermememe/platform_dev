@@ -84,7 +84,17 @@ RSpec.describe Anagram, type: :model do
       key2 = Anagram.get_key("aerb")
       expect(key1).to eq(key2)
     end
+  end
 
+  describe "self.find_all_words_with_the_maximum_number_of_anagrams" do
+    it "should return a list of all the words with the max number of characters" do
+      Word.create({source_word: "arem"})
+      Word.create({source_word: "arme"})
+      Word.create({source_word: "rame"})
+      # now we have 2 goups with 3 anagram - better for our query
+      words_returned = Anagram.find_all_words_with_the_maximum_number_of_anagrams
+      expect(words_returned.count).to eq(6)
+    end
   end
 
 end

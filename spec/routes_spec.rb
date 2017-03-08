@@ -33,4 +33,10 @@ RSpec.describe "anagrams routes", :type => :routing do
         :action =>  "get",
         :word => "word_to_search")
   end
+
+  it "routes get /anagrams/get_max_occurring_anagrams to anagrams#get_max_occurring_anagrams" do
+    expect(:get => "/anagrams/get_max_occurring_anagrams", format: :json).to route_to(
+        :controller => "anagrams",
+        :action =>  "get_max_occurring_anagrams")
+  end
 end

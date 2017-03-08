@@ -10,4 +10,8 @@ class AnagramsController < ApplicationController
       render json: {anagrams:[]}
     end
   end
+
+  def get_max_occurring_anagrams
+    render json: {anagrams: Anagram.find_all_words_with_the_maximum_number_of_anagrams}
+  end
 end

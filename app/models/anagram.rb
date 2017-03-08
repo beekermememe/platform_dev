@@ -35,6 +35,20 @@ class Anagram
       end
       return key
     end
+
+    def find_all_words_with_the_maximum_number_of_anagrams
+      max = 0
+      anagram_keys = []
+      # This AR query groups by anagram key and then count : returns a hash of key to the size of the group - Handy :)
+      Word.group(:anagram_key).count.each do |anagram_key,count|
+        if count > max
+          max = count
+          anagram_keys = []
+        end
+        anagram_keys << anagram_key if count == max
+      end
+      return Word.where(anagram_key: anagram_keys).map { |word_object| word_object.source_word}
+    end
   end
 
 end
