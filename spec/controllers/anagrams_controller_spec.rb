@@ -9,7 +9,7 @@ RSpec.describe AnagramsController, type: :controller do
     end
 
     it "expects to call the method to return anagrams for the word passed" do
-      expect(Anagram).to receive(:find).with("dog",nil,nil).and_return(["god","dog"])
+      expect(Anagram).to receive(:find).with("dog",20,nil).and_return(["god","dog"])
       get :get, word: "dog",format: :json
     end
 
@@ -31,7 +31,7 @@ RSpec.describe AnagramsController, type: :controller do
     context "render the view here" do
       render_views
       it "should return a json array of anagrams" do
-        expect(Anagram).to receive(:find).with("dog",nil,nil).and_return(["god","dog"])
+        expect(Anagram).to receive(:find).with("dog",20,nil).and_return(["god","dog"])
         get :get, word: "dog",format: :json
         data_returned = JSON.parse(response.body)
         expect(response.body).to eq("{\"anagrams\":[\"god\",\"dog\"]}")

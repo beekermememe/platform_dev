@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
 
+  apipie
   get 'words/stats' => 'words#stats'
   delete 'words/:word' => 'words#delete_word'
   delete "words" => "words#delete_all_words"
-  resources :words
+  post "words" => "words#create"
+  #resources :words
 
   get "anagrams/get_max_occurring_anagrams" => "anagrams#get_max_occurring_anagrams"
   get "anagrams/:word" => "anagrams#get"
 
-  resources :anagrams
+  #resources :anagrams
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

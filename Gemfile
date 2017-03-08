@@ -38,6 +38,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'byebug'
   gem 'test-unit'
+  gem 'apipie-rails'
 end
 
 group :development do

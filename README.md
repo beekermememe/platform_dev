@@ -1,7 +1,33 @@
 Ibotta Dev Project
 =========
 
+##Requirements:
+- Ruby Version 2.2.6
+- Sqlite3
 
+##Setup:
+In the terminal
+- Install RVM - see https://rvm.io
+- Install ruby version 2.2.6 - "rvm install 2.2.6"
+- Install bundlers - "rvm use 2.2.6; gem install bundler"
+- cd to the project directory
+- Install the gems - "bundle install"
+- Set up database - "bundle exec rake db:create:all; rake db:migrate"
+
+At this point you are ready to validate the app using the provided test files. To do this run the comment "ruby anagram_test.rb". All the tests should pass
+
+##Testing:
+We are using rspec for testing. See http://rspec.info
+To run all the tests - "bundle exec rake spec". See the rspec docs on how to run individual specs.
+
+## API Documentation
+To get the api documentation you will need to start the server and navigate to the apidocs url - http://localhost:3000/apipie. We are using https://github.com/Apipie/apipie-rails to support this documentation.
+
+## Project Notes
+
+
+Initial Specifications
+======================
 # The Project
 
 ---
