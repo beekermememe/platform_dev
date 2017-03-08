@@ -18,11 +18,11 @@ In the terminal
 At this point you are ready to validate the app using the provided test files. To do this run the comment ```ruby anagram_test.rb``` (note you need to have the server up and running when you run this test suite). All the tests should pass
 
 ##Testing:
-- We are using rspec for testing. See[rspec](http://rspec.info)
+- We are using rspec for testing. See [rspec](http://rspec.info)
 - To run all the tests - ```bundle exec rake spec```. See the rspec docs on how to run individual specs.
 
 ## API Documentation
-To get the api documentation you will need to start the server and navigate to the apidocs url -[http://localhost:3000/apipie](http://localhost:3000/apipie). We are using[apipie](https://github.com/Apipie/apipie-rails)to support this documentation.
+To get the api documentation you will need to start the server and navigate to the apidocs url - [http://localhost:3000/apipie](http://localhost:3000/apipie). We are using [apipie](https://github.com/Apipie/apipie-rails)to support this documentation.
 
 ## Project Notes
 1. There were a 3 endpoint that were optional that are not present, but I will discuss them here
