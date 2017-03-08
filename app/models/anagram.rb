@@ -1,10 +1,14 @@
 class Anagram
   class << self
 
-    def find(word,limit = nil)
+    def find(word,limit = nil, include_proper_nouns = true)
       word_anagram_key = get_key(word)
-      anagrams = Word.where({anagram_key: word_anagram_key}).where('lower(source_word) != ?',word.downcase)
+
+      anagrams = Word.where({anagram_key: word_anagram_key})
+      anagrams = anagrams.where({is_proper_noun: false}) if include_proper_nouns == false
+      anagrams = anagrams.where('lower(source_word) != ?',word.downcase)
       anagrams = anagrams.limit(limit) if limit
+
       anagrams = anagrams.map { |word_object| word_object.source_word}
       return anagrams
     end

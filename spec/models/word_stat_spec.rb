@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe WordStat, type: :model do
   before :each do
-    Word.create([
+    Word.create!([
         {source_word: "bear"},
         {source_word: "bare"},
         {source_word: "moar"},

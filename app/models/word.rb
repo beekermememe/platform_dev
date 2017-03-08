@@ -1,9 +1,16 @@
 class Word < ActiveRecord::Base
-  before_save :create_anagram_key
-
+  #before_save :create_anagram_key
+  before_save :create_anagram_key, :set_is_proper_noun_flag
 
   def create_anagram_key
     self.anagram_key = Anagram.get_key(self.source_word)
+    return true
+  end
+
+  def set_is_proper_noun_flag
+    is_proper_noun_flag = (self.source_word[0].downcase != self.source_word[0])
+    self.is_proper_noun = is_proper_noun_flag
+    return true
   end
 
   class << self

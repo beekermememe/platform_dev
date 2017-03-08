@@ -8,7 +8,7 @@ RSpec.describe Anagram, type: :model do
         {source_word: "moar"},
         {source_word: "roam"},
         {source_word: "silence"},
-        {source_word: "steam"},
+        {source_word: "Steam"},
         {source_word: "meats"},
         {source_word: "mates"}
     ])
@@ -55,9 +55,16 @@ RSpec.describe Anagram, type: :model do
       expect(matches).to include("bear")
     end
 
-    it "should linit the length returned list if there is a limit passed" do
+    it "should limit the length returned list if there is a limit passed" do
       matches = Anagram.find("rabe",1)
       expect(matches.length).to eq(1)
+    end
+
+    it "should filter out words that are proper nouns" do
+      matches1 = Anagram.find("meats",nil,false)
+      expect(matches1.length).to eq(1)
+      matches2 = Anagram.find("meats",nil,true)
+      expect(matches2.length).to eq(2)
     end
   end
 

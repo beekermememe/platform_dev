@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170307193350) do
+ActiveRecord::Schema.define(version: 20170308005334) do
 
   create_table "word_stats", force: :cascade do |t|
     t.integer  "word_length"
@@ -21,12 +21,14 @@ ActiveRecord::Schema.define(version: 20170307193350) do
   end
 
   create_table "words", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "source_word"
     t.string   "anagram_key"
+    t.boolean  "is_proper_noun"
   end
 
   add_index "words", ["anagram_key"], name: "index_words_on_anagram_key"
+  add_index "words", ["is_proper_noun"], name: "index_words_on_is_proper_noun"
 
 end
